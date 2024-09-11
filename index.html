@@ -9,7 +9,12 @@
 <body>
   <a-scene embedded>
     <a-marker preset="hiro">
-      <a-box position="0 0.5 0" rotation="0 45 0" color="#4CC3D9"></a-box>
+        <a-plane position="-1 0 -3" width="1" height="0.75" color="#FFF">
+            <a-plane src="https://zsoltvarju.com" height="0.75" width="1"></a-plane>
+          </a-plane>
+          <a-plane position="0 0 -3" width="1" height="0.75" color="#FFF">
+            <a-plane src="https://zsoltvarju.dev" height="0.75" width="1"></a-plane>
+          </a-plane>
     </a-marker>
     <a-entity camera></a-entity>
   </a-scene>
