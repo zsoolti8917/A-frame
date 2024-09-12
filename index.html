@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AR Car with A-Frame</title>
+  <title>AR Image with Confetti</title>
   <!-- A-Frame library -->
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
   <!-- AR.js library -->
   <script src="https://aframe.io/releases/1.2.0/aframe-ar.js"></script>
+  <!-- A-Frame Particle System Component -->
+  <script src="https://cdn.jsdelivr.net/gh/VinzCh/Aframe-particle-system-component/dist/aframe-particle-system-component.min.js"></script>
 </head>
 <body style="margin: 0; overflow: hidden;">
   <a-scene embedded arjs>
@@ -16,17 +18,38 @@
 
     <!-- AR Marker -->
     <a-marker preset="hiro">
-      <!-- Car model -->
+      <!-- Image instead of a car -->
+      <a-image
+        id="image"
+        src="./example-project.jpg"
+        scale="1 1 1"
+        position="0 0.5 0"
+        rotation="0 0 0">
+      </a-image>
+
+      <!-- Particle system for confetti effect -->
       <a-entity
-        gltf-model="https://cdn.aframe.io/test-models/models/gltf-models/Car/Car.gltf"
-        scale="0.5 0.5 0.5"
-        position="0 0 0"
-        rotation="0 180 0">
+        id="confetti"
+        particle-system="preset: snow; particleCount: 1000; color: #FFC0CB, #FFD700, #ADD8E6; size: 0.1; maxAge: 2; velocityValue: 0 2 0; enabled: false"
+        position="0 0.5 0">
       </a-entity>
     </a-marker>
 
     <!-- Fallback for when the marker is not visible -->
     <a-entity camera></a-entity>
   </a-scene>
+
+  <script>
+    // Add click event listener to the image
+    document.querySelector('#image').addEventListener('click', function () {
+      // Enable the confetti particle system
+      document.querySelector('#confetti').setAttribute('particle-system', 'enabled', true);
+
+      // Disable the particle system after 2 seconds (to simulate confetti falling)
+      setTimeout(function () {
+        document.querySelector('#confetti').setAttribute('particle-system', 'enabled', false);
+      }, 2000);
+    });
+  </script>
 </body>
 </html>
