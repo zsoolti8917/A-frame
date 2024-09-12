@@ -1,31 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AR Image Display</title>
-  <!-- A-Frame library -->
-  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-  <!-- AR.js library -->
+  <title>AR Image Locked in Space</title>
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
   <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
-  <style>
-    body { margin: 0; overflow: hidden; }
-    a-scene { height: 100vh; width: 100vw; }
-  </style>
 </head>
 <body>
-  <a-scene embedded arjs='sourceType: webcam;'>
-    <!-- Camera -->
-    <a-entity camera position="0 0 0" look-controls></a-entity>
+  <a-scene embedded arjs="sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
+    <a-assets>
+      <img id="myImage" src="./example-project.jpg"> 
+    </a-assets>
 
-    <!-- Image in AR -->
-    <a-image
-      src="./example-project.jpg"
-      width="2"  
-      height="1.5"  
-      position="0 1.5 -3"  
-      rotation="0 0 0">
-    </a-image>
+    <a-marker preset="hiro">
+      <a-image src="#myImage" width="0.5" height="0.5" position="0 0 0" rotation="-90 0 0"></a-image>
+    </a-marker>
+
+    <a-entity camera></a-entity> 
   </a-scene>
 </body>
 </html>
