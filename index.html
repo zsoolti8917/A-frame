@@ -1,30 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>AR with A-Frame</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple VR Scenario</title>
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ar.js/2.0.8/aframe/build/aframe-ar.js"></script>
 </head>
 <body>
-  <a-scene embedded arjs='sourceType: webcam;'>
-    <!-- Define the AR marker -->
-    <a-marker preset="hiro">
-      <!-- Create a plane that will display the website -->
-      <a-plane
-        height="1"
-        width="1.5"
-        position="0 0 0"
-        material="shader: html; target: #my-website"
-        rotation="-90 0 0">
-      </a-plane>
-    </a-marker>
+  <a-scene>
+    <!-- Define the ground -->
+    <a-plane color="#7BC8A4" height="100" width="100" rotation="-90 0 0"></a-plane>
+    
+    <!-- Define the car -->
+    <a-entity position="0 0 -5">
+      <!-- Car body -->
+      <a-box color="red" depth="4" height="1" width="2" position="0 0.5 0"></a-box>
+      <!-- Front left wheel -->
+      <a-cylinder color="black" radius="0.5" height="0.5" position="-0.75 0 1.5" rotation="90 0 0"></a-cylinder>
+      <!-- Front right wheel -->
+      <a-cylinder color="black" radius="0.5" height="0.5" position="0.75 0 1.5" rotation="90 0 0"></a-cylinder>
+      <!-- Back left wheel -->
+      <a-cylinder color="black" radius="0.5" height="0.5" position="-0.75 0 -1.5" rotation="90 0 0"></a-cylinder>
+      <!-- Back right wheel -->
+      <a-cylinder color="black" radius="0.5" height="0.5" position="0.75 0 -1.5" rotation="90 0 0"></a-cylinder>
+    </a-entity>
+    
     <!-- Define the camera -->
-    <a-camera-static></a-camera-static>
+    <a-camera position="0 1.6 0"></a-camera>
   </a-scene>
-
-  <!-- Define the HTML content to be displayed -->
-  <script type="text/html" id="my-website">
-    <iframe src="https://yourwebsite.com" style="border: none; width: 100%; height: 100%;"></iframe>
-  </script>
 </body>
 </html>
