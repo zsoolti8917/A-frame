@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AR Image Locked in Space</title>
+  <title>AR Box</title>
   <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-  <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 </head>
 <body style='margin : 0px; overflow: hidden;'>
-  <a-scene embedded>
-    <a-box position='0 0 -3' material='opacity: 0.5;'></a-box>
-    <a-entity camera></a-entity> 
+  <a-scene embedded arjs='sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
+    <a-box position='0 0.5 0' material='opacity: 0.5;'></a-box>
+    <a-marker-camera preset='hiro'></a-marker-camera>
   </a-scene>
 </body>
 </html>
