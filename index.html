@@ -3,28 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simple AR Scenario</title>
+  <title>AR Car with A-Frame</title>
+  <!-- A-Frame library -->
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <!-- AR.js library -->
+  <script src="https://aframe.io/releases/1.2.0/aframe-ar.js"></script>
 </head>
 <body style="margin: 0; overflow: hidden;">
   <a-scene embedded arjs>
-    <!-- Define the marker -->
+    <!-- Camera -->
+    <a-entity camera position="0 0 0" look-controls></a-entity>
+
+    <!-- AR Marker -->
     <a-marker preset="hiro">
-      <!-- Define the car -->
-      <a-entity position="0 0 0">
-        <!-- Car body -->
-        <a-box color="red" depth="4" height="1" width="2" position="0 0.5 0"></a-box>
-        <!-- Front left wheel -->
-        <a-cylinder color="black" radius="0.5" height="0.5" position="-0.75 0 1.5" rotation="90 0 0"></a-cylinder>
-        <!-- Front right wheel -->
-        <a-cylinder color="black" radius="0.5" height="0.5" position="0.75 0 1.5" rotation="90 0 0"></a-cylinder>
-        <!-- Back left wheel -->
-        <a-cylinder color="black" radius="0.5" height="0.5" position="-0.75 0 -1.5" rotation="90 0 0"></a-cylinder>
-        <!-- Back right wheel -->
-        <a-cylinder color="black" radius="0.5" height="0.5" position="0.75 0 -1.5" rotation="90 0 0"></a-cylinder>
+      <!-- Car model -->
+      <a-entity
+        gltf-model="https://cdn.aframe.io/test-models/models/gltf-models/Car/Car.gltf"
+        scale="0.5 0.5 0.5"
+        position="0 0 0"
+        rotation="0 180 0">
       </a-entity>
     </a-marker>
+
+    <!-- Fallback for when the marker is not visible -->
     <a-entity camera></a-entity>
   </a-scene>
 </body>
